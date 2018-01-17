@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import Dot from './components/Dot';
 
 const propTypes = {
-  // The max number of dots. Will replace in a LRU fashion
-  maxDots: PropTypes.number, // TODO
-
+  // CSS Styles for dots
   dotStyles: PropTypes.object,
 
   // The background color to use
@@ -23,15 +21,24 @@ const propTypes = {
 
   // The width in pixels of height
   height: PropTypes.number,
+
+  // To use pixel coordinates vs a scale from 0-1
+  pixelCoordinates: PropTypes.bool,
+
+  // Default dots
+  initialDots: PropTypes.array,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  pixelCoordinates: false,
+  initialDots: [],
+};
 
 export default class ReactImageDot extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dots: [],
+      dots: this.props.initialDots,
       grabbing: false,
     };
   }
@@ -61,19 +68,19 @@ export default class ReactImageDot extends React.Component {
 
   resetDots = () => {
     this.setState({
-      dots: [],
+      dots: this.props.initialDots,
     });
   }
 
   render() {
     const { dots, grabbing } = this.state;
     const { width, height, styles, dotStyles, backgroundColor, backgroundImageUrl } = this.props;
-    const grabClass = grabbing ? 'grabbing' : '';
+    const grabClass = grabbing ? 'react-image-dot__grabbing' : '';
 
     return (
-      <div className="container">
+      <div className="react-image-dot__container">
         <div
-          className={`dot-wrapper ${grabClass}`}
+          className={`react-image-dot__wrapper ${grabClass}`}
           onMouseUp={this.onMouseUp}
           style={{
             ...styles,

@@ -21,7 +21,7 @@ export default class Dot extends React.Component {
     const { x, y, styles } = this.props;
     return (
       <div
-        className="dot"
+        className="react-image-dot"
         onMouseDown={this.onMouseDown}
         style={{
           ...styles,
