@@ -50,8 +50,8 @@ export default class ReactImageDot extends React.Component {
       dots: [
         ...this.state.dots,
         {
-          x: e.pageX - bounds.left,
-          y: e.pageY - bounds.top,
+          x: e.clientX - bounds.left,
+          y: e.clientY - bounds.top,
         },
       ],
       grabbing: false,
@@ -64,6 +64,14 @@ export default class ReactImageDot extends React.Component {
         return i !== index;
       }),
       grabbing: true,
+    });
+  }
+
+  deleteDot = (index) => {
+    this.setState({
+      dots: this.state.dots.filter((e, i) => {
+        return i !== index;
+      }),
     });
   }
 
@@ -105,6 +113,7 @@ export default class ReactImageDot extends React.Component {
           height={height}
           width={width}
           dots={dots}
+          deleteDot={this.deleteDot}
         />
       </div>
     );

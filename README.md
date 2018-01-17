@@ -1,6 +1,6 @@
 # React Image Dot
 
-Allows you to draw dots on a background image
+Allows you to draw dots on a background image. [Demo](https://2p5lzo7y20.codesandbox.io/)
 
 ## Usage
 
