@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Dot from './components/Dot';
+import DotsInfo from './components/DotsInfo';
 
 const propTypes = {
   // CSS Styles for dots
@@ -100,6 +101,11 @@ export default class ReactImageDot extends React.Component {
           )}
         </div>
         <button onClick={this.resetDots}>Reset</button>
+        <DotsInfo
+          height={height}
+          width={width}
+          dots={dots}
+        />
       </div>
     );
   }
