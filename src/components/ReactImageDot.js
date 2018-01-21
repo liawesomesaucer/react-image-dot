@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Dot from './components/Dot';
-import DotsInfo from './components/DotsInfo';
+import Dot from './Dot';
 
 const propTypes = {
+  // Required functions to handle parent-level state management
+  deleteDot: PropTypes.func.isRequired,
+  addDot: PropTypes.func.isRequired,
+
+  resetDots: PropTypes.func,
+
   // CSS Styles for dots
   dotStyles: PropTypes.object,
 
@@ -39,7 +44,6 @@ export default class ReactImageDot extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dots: this.props.initialDots,
       grabbing: false,
     };
   }
@@ -47,43 +51,29 @@ export default class ReactImageDot extends React.Component {
   onMouseUp = (e) => {
     const bounds = e.target.getBoundingClientRect();
     this.setState({
-      dots: [
-        ...this.state.dots,
-        {
-          x: e.clientX - bounds.left,
-          y: e.clientY - bounds.top,
-        },
-      ],
       grabbing: false,
+    });
+    this.props.addDot({
+      x: e.clientX - bounds.left,
+      y: e.clientY - bounds.top,
     });
   }
 
   moveDot = (index) => {
     this.setState({
-      dots: this.state.dots.filter((e, i) => {
-        return i !== index;
-      }),
       grabbing: true,
     });
-  }
-
-  deleteDot = (index) => {
-    this.setState({
-      dots: this.state.dots.filter((e, i) => {
-        return i !== index;
-      }),
-    });
+    this.props.deleteDot(index);
   }
 
   resetDots = () => {
-    this.setState({
-      dots: this.props.initialDots,
-    });
+    this.props.resetDots();
   }
 
   render() {
-    const { dots, grabbing } = this.state;
-    const { width, height, styles, dotStyles, backgroundColor, backgroundImageUrl } = this.props;
+    const { grabbing } = this.state;
+
+    const { dots, width, height, styles, dotStyles, backgroundColor, backgroundImageUrl } = this.props;
     const grabClass = grabbing ? 'react-image-dot__grabbing' : '';
 
     return (
@@ -107,14 +97,10 @@ export default class ReactImageDot extends React.Component {
               moveDot={this.moveDot}
             />
           )}
+          {this.props.resetDots &&
+            <button onClick={this.resetDots}>Reset</button>
+          }
         </div>
-        <button onClick={this.resetDots}>Reset</button>
-        <DotsInfo
-          height={height}
-          width={width}
-          dots={dots}
-          deleteDot={this.deleteDot}
-        />
       </div>
     );
   }

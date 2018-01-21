@@ -4,6 +4,9 @@ Allows you to draw dots on a background image. [Demo](https://2p5lzo7y20.codesan
 
 ## Usage
 
+See [ReactImageDotExample](https://github.com/liawesomesaucer/react-image-dot/blob/master/src/ReactImageDotExample.js) 
+as an example
+
 ```
 <ReactImageDot
   backgroundImageUrl='https://s3.us-west-1.amazonaws.com/thestratbook/dev-images/map.png'
@@ -14,6 +17,10 @@ Allows you to draw dots on a background image. [Demo](https://2p5lzo7y20.codesan
 
 ## Options
 
+The functions `addDot` and `deleteDot` are required
+
+* `resetDots`: func - when present, will render a button that calls a parent function
+                to reset dots
 * `dotStyles`: object - Additional CSS Styles for dots (overrides CSS)
 * `backgroundColor`: string - Background color to use
 * `backgroundImageUrl`: string - URL of background image to use
@@ -21,7 +28,7 @@ Allows you to draw dots on a background image. [Demo](https://2p5lzo7y20.codesan
 * `width`: number - The container's width
 * `height`: number - The container's height
 * `pixelCoordinates`: bool - To use pixel coordinates vs a scale from 0-1
-* `initialDots`: array - The list of existing dots to start from or reset to
+* `dots`: array - The dots, managed in parent-level (or redux) state
 
 ## Info
 
