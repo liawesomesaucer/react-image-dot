@@ -46,17 +46,23 @@ export default class ReactImageDotExample extends React.Component {
     return (
       <div>
         <ReactImageDot
-          backgroundImageUrl='https://s3.us-west-1.amazonaws.com/thestratbook/dev-images/map.png'
-          width={300}
-          height={300}
+          backgroundImageUrl='https://raw.githubusercontent.com/liawesomesaucer/react-image-dot/master/public/images/map.png'
+          width={480}
+          height={480}
           dots={dots}
           deleteDot={this.deleteDot}
           addDot={this.addDot}
+          dotRadius={6}
+          dotStyles={{
+            backgroundColor: 'red',
+            boxShadow: '0 2px 4px gray',
+          }} 
+          backgroundSize={'cover'}
         />
         <button onClick={this.resetDots}>Reset</button>
         <DotsInfo
-          height={300}
-          width={300}
+          height={480}
+          width={480}
           dots={dots}
           deleteDot={this.deleteDot}
         />

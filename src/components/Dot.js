@@ -6,11 +6,14 @@ const propTypes = {
   y: PropTypes.number.isRequired,
   i: PropTypes.number.isRequired,
   moveDot: PropTypes.func.isRequired,
+  dotRadius: PropTypes.number,
 
   styles: PropTypes.object,
 }
 
-const defaultProps = {};
+const defaultProps = {
+  dotRadius: 5,
+};
 
 export default class Dot extends React.Component {
   onMouseDown = () => {
@@ -18,13 +21,17 @@ export default class Dot extends React.Component {
   }
 
   render() {
-    const { x, y, styles } = this.props;
+    const { x, y, styles, dotRadius } = this.props;
     return (
       <div
         className="react-image-dot"
         onMouseDown={this.onMouseDown}
         style={{
           ...styles,
+          height: dotRadius * 2,
+          width: dotRadius * 2,
+          borderRadius: dotRadius,
+          transform: `translate(${-dotRadius}, ${-dotRadius})`,
           top: y,
           left: x
         }}
