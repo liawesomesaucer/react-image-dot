@@ -13,6 +13,9 @@ const propTypes = {
   // CSS Styles for dots
   dotStyles: PropTypes.object,
 
+  // The radius of the dot
+  dotRadius: PropTypes.number,
+
   // The background color to use
   backgroundColor: PropTypes.string,
 
@@ -22,6 +25,9 @@ const propTypes = {
   // Additional styles for container
   styles: PropTypes.object,
 
+  // Backgroundsize if needed
+  backgroundSize: PropTypes.string,
+
   // The width in pixels of the box. If unset, will be 100%
   width: PropTypes.number,
 
@@ -30,14 +36,11 @@ const propTypes = {
 
   // To use pixel coordinates vs a scale from 0-1
   pixelCoordinates: PropTypes.bool,
-
-  // Default dots
-  initialDots: PropTypes.array,
 };
 
 const defaultProps = {
   pixelCoordinates: false,
-  initialDots: [],
+  backgroundSize: 'cover',
 };
 
 export default class ReactImageDot extends React.Component {
@@ -73,7 +76,7 @@ export default class ReactImageDot extends React.Component {
   render() {
     const { grabbing } = this.state;
 
-    const { dots, width, height, styles, dotStyles, backgroundColor, backgroundImageUrl } = this.props;
+    const { dots, width, height, styles, dotStyles, backgroundColor, backgroundImageUrl, dotRadius, backgroundSize } = this.props;
     const grabClass = grabbing ? 'react-image-dot__grabbing' : '';
 
     return (
@@ -86,6 +89,7 @@ export default class ReactImageDot extends React.Component {
             background: backgroundColor || `url('${backgroundImageUrl}') no-repeat center center`,
             width,
             height,
+            backgroundSize,
           }}
         >
           {dots.map((dot, i) =>
@@ -95,6 +99,7 @@ export default class ReactImageDot extends React.Component {
               i={i}
               styles={dotStyles}
               moveDot={this.moveDot}
+              dotRadius={dotRadius}
             />
           )}
         </div>
