@@ -52,7 +52,6 @@ export default class ReactImageDotExample extends React.Component {
           dots={dots}
           deleteDot={this.deleteDot}
           addDot={this.addDot}
-          resetDots={this.resetDots}
         />
         <button onClick={this.resetDots}>Reset</button>
         <DotsInfo

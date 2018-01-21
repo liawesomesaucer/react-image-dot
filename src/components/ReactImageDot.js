@@ -97,10 +97,10 @@ export default class ReactImageDot extends React.Component {
               moveDot={this.moveDot}
             />
           )}
-          {this.props.resetDots &&
-            <button onClick={this.resetDots}>Reset</button>
-          }
         </div>
+        {this.props.resetDots &&
+          <button onClick={this.resetDots}>Reset</button>
+        }
       </div>
     );
   }
