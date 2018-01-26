@@ -6,7 +6,6 @@ Allows you to draw dots on a background image. [Demo](https://2p5lzo7y20.codesan
 
 See [ReactImageDotExample](https://github.com/liawesomesaucer/react-image-dot/blob/master/src/ReactImageDotExample.js) 
 as an example. Feel free to copy for your own needs.
-
 ```
 import React from 'react';
 
